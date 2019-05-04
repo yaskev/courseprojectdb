@@ -19,7 +19,8 @@ create table Trader (
     address_txt varchar(50),
     joined_dt timestamp not null,
     birth_dt timestamp not null,
-    is_vip_flg boolean default false
+    is_vip_flg boolean default false,
+    broker_id integer references Broker(broker_id)
 );
 
 create table Account (
