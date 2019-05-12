@@ -34,7 +34,7 @@ create table Account (
 );
 
 create table Balance (
-    account_id integer references Account(account_id),
+    account_id integer references Account(account_id) on delete cascade,
     balance_amt real default 0.0,
     valid_from_dttm timestamp not null,
     valid_to_dttm timestamp default timestamp '01-01-9999',
@@ -89,3 +89,7 @@ create table Trader_X_Broker (
     broker_id integer references Broker(broker_id),
     primary key (trader_id, broker_id)
 );
+
+-- alter table balance drop constraint balance_account_id_fkey;
+-- alter table balance add constraint constraint_fk
+-- foreign key (account_id) references Account(account_id) on delete cascade;

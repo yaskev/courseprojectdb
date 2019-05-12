@@ -39,13 +39,14 @@ create view trader_view as (
 );
 
 create view account_view as (
-    select split_part(t.trader_nm, ' ', 1) || ' ' || substr(split_part(t.trader_nm, ' ', 2), 1, 1) || '.' as Name,
+    select t.trader_nm,
            substr(cast(a.account_no as text), 1, 1) || '**' || substr(cast(a.account_no as text), 4, 1) as Account_no,
            b.balance_amt,
-           a.currency_nm
+           a.currency_nm,
+           b.valid_from_dttm,
+           b.valid_to_dttm
     from Trader t inner join Account a on a.trader_id = t.trader_id
         inner join Balance b on a.account_id = b.account_id
-    where a.valid_to_dttm = timestamp'01-01-9999' and b.valid_to_dttm = timestamp'01-01-9999'
 );
 
 create view balance_view as (
@@ -56,13 +57,11 @@ create view balance_view as (
 
 create view stock_x_account_view as (
     select sxa.ticker_id,
-           e.exchange_nm,
            substr(cast(a.account_no as text), 1, 1) || '**' || substr(cast(a.account_no as text), 4, 1) as Account_no,
            sxa.stock_cnt,
            sxa.transaction_dttm,
            sxa.transaction_type
     from stock_x_account sxa inner join account a on sxa.account_id = a.account_id
-        inner join exchange e on sxa.exchange_id = e.exchange_id
 );
 
 create view exchange_x_broker_view as (
@@ -86,3 +85,16 @@ create view stock_x_exchange_view as (
     from stock_x_exchange sxe inner join exchange e on sxe.exchange_id = e.exchange_id
     where sxe.valid_to_dt = timestamp'01-01-9999'
 );
+
+
+select * from account_view;
+select * from account_x_exchange_view;
+select * from balance_view;
+select * from broker_view;
+select * from company_view;
+select * from exchange_view;
+select * from exchange_x_broker_view;
+select * from stock_view;
+select * from stock_x_account_view;
+select * from stock_x_exchange_view;
+select * from trader_view;
