@@ -35,7 +35,7 @@ create view trader_view as (
            t.joined_dt,
            t.is_vip_flg,
            b.broker_nm
-    from Trader t inner join Broker b on t.broker_id = b.broker_id
+    from Trader t left join Broker b on t.broker_id = b.broker_id
 );
 
 create view account_view as (

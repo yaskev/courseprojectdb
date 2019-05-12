@@ -1,31 +1,34 @@
 set search_path to trading;
 
 create table Company (
-    company_id integer primary key,
+    company_id serial primary key,
     company_nm varchar(50) not null,
     address_txt varchar(50)
 );
 
 create table Broker (
-    broker_id integer primary key,
+    broker_id serial primary key,
     broker_nm varchar(50) not null,
     address_txt varchar(50),
     commission_amt real check ( commission_amt >= 0 )
 );
 
 create table Trader (
-    trader_id integer primary key,
+    trader_id serial primary key,
     trader_nm varchar(25) not null,
     address_txt varchar(50),
     joined_dt timestamp not null,
     birth_dt timestamp not null,
     is_vip_flg boolean default false,
-    broker_id integer references Broker(broker_id)
+    broker_id integer references Broker(broker_id) on delete cascade
 );
 
+-- alter table account drop constraint account_trader_id_fkey;
+-- alter table account add constraint constraint_fk foreign key (trader_id) references Trader(trader_id) on delete cascade;
+
 create table Account (
-    account_id integer not null,
-    trader_id integer references Trader(trader_id),
+    account_id serial,
+    trader_id integer references Trader(trader_id) on delete cascade,
     account_no integer not null,
     currency_nm varchar(3) not null,
     valid_from_dttm timestamp not null,
@@ -47,7 +50,7 @@ create table Stock (
 );
 
 create table Exchange (
-    exchange_id integer primary key,
+    exchange_id serial primary key,
     exchange_nm varchar(50) not null,
     address_txt varchar(50),
     commission_amt real check (commission_amt >= 0)
@@ -82,12 +85,6 @@ create table Exchange_X_Broker (
     exchange_id integer references Exchange(exchange_id),
     broker_id integer references Broker(broker_id),
     primary key (exchange_id, broker_id)
-);
-
-create table Trader_X_Broker (
-    trader_id integer references Trader(trader_id),
-    broker_id integer references Broker(broker_id),
-    primary key (trader_id, broker_id)
 );
 
 -- alter table balance drop constraint balance_account_id_fkey;

@@ -1,33 +1,33 @@
 set search_path to trading;
 
-insert into company values (1, 'Apple', 'Apple Campus, Cupertino, USA');
-insert into company values (2, 'Google', 'Amphitheatre Parkway Mountain View, CA, USA');
-insert into company values (3, 'Sberbank', '19 Vavilova St., Moscow, Russia');
-insert into company values (4, 'Aeroflot', '1 Arbat St., Moscow, Russia');
-insert into company values (5, 'Gazprom', '4A Novodanilovskaya nab., Moscow, Russia');
-insert into company values (6, 'Facebook', '1 Hacker Way, Menlo Park, CA, USA');
-insert into company values (7, 'General Electric', '3135 Easton Turnpike, Fairfield, CT, USA');
+insert into company (company_nm, address_txt) values ('Apple', 'Apple Campus, Cupertino, USA');
+insert into company (company_nm, address_txt) values ('Google', 'Amphitheatre Parkway Mountain View, CA, USA');
+insert into company (company_nm, address_txt) values ('Sberbank', '19 Vavilova St., Moscow, Russia');
+insert into company (company_nm, address_txt) values ('Aeroflot', '1 Arbat St., Moscow, Russia');
+insert into company (company_nm, address_txt) values ('Gazprom', '4A Novodanilovskaya nab., Moscow, Russia');
+insert into company (company_nm, address_txt) values ('Facebook', '1 Hacker Way, Menlo Park, CA, USA');
+insert into company (company_nm, address_txt) values ('General Electric', '3135 Easton Turnpike, Fairfield, CT, USA');
 
-insert into broker values (1, 'Oanda', '795 Folsom St Floor 1, San Francisco, CA, USA', 5);
-insert into broker values (2, 'TD Ameritrade', '1945 Irving St., San Francisco, CA, USA', 6.95);
-insert into broker values (3, 'Fidelity', 'Fidelity Investments PO Box, Cincinnati, USA', 4.95);
-insert into broker values (4, 'E*TRADE', 'New York, USA', 6.95);
-insert into broker values (5, 'Merrill Edge', '400 El Camino Real, Burlingame, CA, USA', 6.95);
+insert into broker (broker_nm, address_txt, commission_amt) values ('Oanda', '795 Folsom St Floor 1, San Francisco, CA, USA', 5);
+insert into broker (broker_nm, address_txt, commission_amt) values ('TD Ameritrade', '1945 Irving St., San Francisco, CA, USA', 6.95);
+insert into broker (broker_nm, address_txt, commission_amt) values ('Fidelity', 'Fidelity Investments PO Box, Cincinnati, USA', 4.95);
+insert into broker (broker_nm, address_txt, commission_amt) values ('E*TRADE', 'New York, USA', 6.95);
+insert into broker (broker_nm, address_txt, commission_amt) values ('Merrill Edge', '400 El Camino Real, Burlingame, CA, USA', 6.95);
 
-insert into trader values (1, 'John Obama', 'New York, USA', timestamp'01-22-2014', timestamp'09-25-1990');
-insert into trader values (2, 'Ivan Grigoryev', 'Novosibirsk, Russia', timestamp'05-01-2016', timestamp'08-06-1975');
-insert into trader values (3, 'Andrew Komarov', 'Ekaterinburg, Russia', timestamp'04-23-2013', timestamp'09-06-1999');
-insert into trader values (4, 'Ivan Volkov', 'Munchen, Germany', timestamp'05-23-2017', timestamp'06-30-1988', true);
-insert into trader values (5, 'Daniel Carvalho', 'Rome, Italy', timestamp'05-12-2014', timestamp'05-29-1985', true);
-insert into trader values (6, 'Adil Menveed', 'Pakistan', timestamp'12-23-2013', timestamp'11-05-1977');
+insert into trader (trader_nm, address_txt, joined_dt, birth_dt, broker_id) values ('John Obama', 'New York, USA', timestamp'01-22-2014', timestamp'09-25-1990', 1);
+insert into trader (trader_nm, address_txt, joined_dt, birth_dt, broker_id) values ('Ivan Grigoryev', 'Novosibirsk, Russia', timestamp'05-01-2016', timestamp'08-06-1975', 5);
+insert into trader (trader_nm, address_txt, joined_dt, birth_dt, broker_id) values ('Andrew Komarov', 'Ekaterinburg, Russia', timestamp'04-23-2013', timestamp'09-06-1999', 5);
+insert into trader (trader_nm, address_txt, joined_dt, birth_dt, is_vip_flg, broker_id) values ('Ivan Volkov', 'Munchen, Germany', timestamp'05-23-2017', timestamp'06-30-1988', true, 3);
+insert into trader (trader_nm, address_txt, joined_dt, birth_dt, is_vip_flg, broker_id) values ('Daniel Carvalho', 'Rome, Italy', timestamp'05-12-2014', timestamp'05-29-1985', true, 4);
+insert into trader (trader_nm, address_txt, joined_dt, birth_dt) values ('Adil Menveed', 'Pakistan', timestamp'12-23-2013', timestamp'11-05-1977');
 
-insert into account values (1, 1, 1001, 'USD', timestamp'05-02-2015');
-insert into account values (2, 1, 1002, 'USD', timestamp'04-25-2017');
-insert into account values (3, 2, 1003, 'USD', timestamp'01-12-2016');
-insert into account values (4, 3, 1004, 'RUR', timestamp'04-29-2014');
-insert into account values (5, 4, 1005, 'RUR', timestamp'01-01-2018', timestamp'04-29-2019');
-insert into account values (6, 5, 1006, 'EUR', timestamp'04-02-2016');
-insert into account values (7, 5, 1007, 'EUR', timestamp'04-02-2015');
+insert into account (trader_id, account_no, currency_nm, valid_from_dttm) values (1, 1001, 'USD', timestamp'05-02-2015');
+insert into account (trader_id, account_no, currency_nm, valid_from_dttm) values (1, 1002, 'USD', timestamp'04-25-2017');
+insert into account (trader_id, account_no, currency_nm, valid_from_dttm) values (2, 1003, 'USD', timestamp'01-12-2016');
+insert into account (trader_id, account_no, currency_nm, valid_from_dttm) values (3, 1004, 'RUR', timestamp'04-29-2014');
+insert into account (trader_id, account_no, currency_nm, valid_from_dttm, valid_to_dttm) values (4, 1005, 'RUR', timestamp'01-01-2018', timestamp'04-29-2019');
+insert into account (trader_id, account_no, currency_nm, valid_from_dttm) values (5, 1006, 'EUR', timestamp'04-02-2016');
+insert into account (trader_id, account_no, currency_nm, valid_from_dttm) values (5, 1007, 'EUR', timestamp'04-02-2015');
 
 insert into balance values (1, 0, timestamp'05-02-2015', timestamp'11-05-2015');
 insert into balance values (1, 1500, timestamp'11-05-2015', timestamp'12-20-2016');
@@ -60,8 +60,8 @@ insert into stock values ('GAZP', 5);
 insert into stock values ('FB', 6);
 insert into stock values ('GE', 7);
 
-insert into exchange values(1, 'New-York Stock Exchange', '11 Wall St, New York, NY, USA', 0.01);
-insert into exchange values (2, 'Moscow Exchange', '4/7 Vozdvizhenka St., Moscow, Russia', 0.02);
+insert into exchange (exchange_nm, address_txt, commission_amt) values('New-York Stock Exchange', '11 Wall St, New York, NY, USA', 0.01);
+insert into exchange (exchange_nm, address_txt, commission_amt) values ('Moscow Exchange', '4/7 Vozdvizhenka St., Moscow, Russia', 0.02);
 
 insert into account_x_exchange values (1, 1);
 insert into account_x_exchange values (2, 1);
@@ -75,14 +75,6 @@ insert into account_x_exchange values (1, 6);
 insert into account_x_exchange values (2, 6);
 insert into account_x_exchange values (1, 7);
 insert into account_x_exchange values (2, 7);
-
-insert into trader_x_broker values (1, 1);
-insert into trader_x_broker values (1, 2);
-insert into trader_x_broker values (5, 5);
-insert into trader_x_broker values (5, 4);
-insert into trader_x_broker values (2, 5);
-insert into trader_x_broker values (3, 5);
-insert into trader_x_broker values (4, 3);
 
 insert into exchange_x_broker values (1, 1);
 insert into exchange_x_broker values (2, 1);
